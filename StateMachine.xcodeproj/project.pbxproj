@@ -19,6 +19,10 @@
 		10843B0118B2437600CFE653 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10843AE918B2437600CFE653 /* UIKit.framework */; };
 		10843B0918B2437600CFE653 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10843B0718B2437600CFE653 /* InfoPlist.strings */; };
 		10843B0B18B2437600CFE653 /* StateMachineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10843B0A18B2437600CFE653 /* StateMachineTests.m */; };
+		10843B1618B243A600CFE653 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 10843B1418B243A600CFE653 /* LICENSE */; };
+		10843B1718B243A600CFE653 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 10843B1518B243A600CFE653 /* README.md */; };
+		10843B1A18B2490300CFE653 /* StateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 10843B1918B2490300CFE653 /* StateMachine.m */; };
+		10A9093218B3C99E00135893 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A9093118B3C99E00135893 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,12 @@
 		10843B0618B2437600CFE653 /* StateMachineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StateMachineTests-Info.plist"; sourceTree = "<group>"; };
 		10843B0818B2437600CFE653 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		10843B0A18B2437600CFE653 /* StateMachineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateMachineTests.m; sourceTree = "<group>"; };
+		10843B1418B243A600CFE653 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		10843B1518B243A600CFE653 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		10843B1818B2490300CFE653 /* StateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateMachine.h; path = Vendor/StateMachine/StateMachine.h; sourceTree = "<group>"; };
+		10843B1918B2490300CFE653 /* StateMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StateMachine.m; path = Vendor/StateMachine/StateMachine.m; sourceTree = "<group>"; };
+		10A9093018B3C99E00135893 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		10A9093118B3C99E00135893 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +87,8 @@
 		10843AD918B2437600CFE653 = {
 			isa = PBXGroup;
 			children = (
+				10843B1418B243A600CFE653 /* LICENSE */,
+				10843B1518B243A600CFE653 /* README.md */,
 				10843AEB18B2437600CFE653 /* StateMachine */,
 				10843B0418B2437600CFE653 /* StateMachineTests */,
 				10843AE418B2437600CFE653 /* Frameworks */,
@@ -107,8 +119,11 @@
 		10843AEB18B2437600CFE653 /* StateMachine */ = {
 			isa = PBXGroup;
 			children = (
+				10843B1B18B24AB200CFE653 /* Vendor */,
 				10843AF418B2437600CFE653 /* AppDelegate.h */,
 				10843AF518B2437600CFE653 /* AppDelegate.m */,
+				10A9093018B3C99E00135893 /* ViewController.h */,
+				10A9093118B3C99E00135893 /* ViewController.m */,
 				10843AF718B2437600CFE653 /* Images.xcassets */,
 				10843AEC18B2437600CFE653 /* Supporting Files */,
 			);
@@ -142,6 +157,23 @@
 				10843B0718B2437600CFE653 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		10843B1B18B24AB200CFE653 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				10843B1C18B24ABA00CFE653 /* StateMachine */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		10843B1C18B24ABA00CFE653 /* StateMachine */ = {
+			isa = PBXGroup;
+			children = (
+				10843B1818B2490300CFE653 /* StateMachine.h */,
+				10843B1918B2490300CFE653 /* StateMachine.m */,
+			);
+			name = StateMachine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +251,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10843B1618B243A600CFE653 /* LICENSE in Resources */,
 				10843AF018B2437600CFE653 /* InfoPlist.strings in Resources */,
+				10843B1718B243A600CFE653 /* README.md in Resources */,
 				10843AF818B2437600CFE653 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +275,8 @@
 			files = (
 				10843AF618B2437600CFE653 /* AppDelegate.m in Sources */,
 				10843AF218B2437600CFE653 /* main.m in Sources */,
+				10A9093218B3C99E00135893 /* ViewController.m in Sources */,
+				10843B1A18B2490300CFE653 /* StateMachine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +479,7 @@
 				10843B1018B2437600CFE653 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		10843B1118B2437600CFE653 /* Build configuration list for PBXNativeTarget "StateMachineTests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +488,7 @@
 				10843B1318B2437600CFE653 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
