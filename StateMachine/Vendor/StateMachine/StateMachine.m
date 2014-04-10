@@ -13,8 +13,8 @@
 
 @interface Machine ()
 {
-    NSMutableArray *_states;  // all instantiated states
-    State __weak   *_current; // current state
+    NSMutableDictionary *_states;  // all instantiated states
+    State __weak        *_current; // current state
 }
 
 // public to State class
@@ -34,7 +34,7 @@
 
 // public to Machine class
 @property (nonatomic, weak) State *superstatevar;
-@property (nonatomic)       int            level; // hierachy level of the state
+@property (nonatomic)       int   level; // hierachy level of the state
 
 - (void)enterState;
 - (void)exitState;
@@ -49,18 +49,24 @@
 {
     if (stateClass == Nil) return nil; // no object for topstate
     
-    for (State *state in _states) if ([state isKindOfClass:stateClass]) return state; // state instance already created
+    id key = [stateClass class];       // key used in dictionary
+    
+    State *state = _states[key];       // check if object is already in dictionary
     
     // if first time create object including its superstates
-    State *state = [[stateClass alloc] init];
-    state.machine = self;
-    
+    if (state == nil)
+    {
+        state = [[stateClass alloc] init];
+        state.machine = self;
+        
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    state.superstatevar = [self getObjectOfStateClass:[state performSelector:NSSelectorFromString(@"superstate")]];
+        state.superstatevar = [self getObjectOfStateClass:[state performSelector:NSSelectorFromString(@"superstate")]];
 #pragma clang diagnostic pop
-    if (state.superstatevar) state.level = state.superstatevar.level + 1;
-    [_states addObject:state];
+        if (state.superstatevar) state.level = state.superstatevar.level + 1; // compute the hierarchy level
+        _states[key] = state; // store new object in dictionary
+    }
+    
     return state;
 }
 
@@ -72,7 +78,7 @@
         TRACE_MACHINE(@"Starting machine: %@", NSStringFromClass([self class]));
         
         _extendedState = extendedState;
-        _states = [[NSMutableArray alloc] init];
+        _states = [[NSMutableDictionary alloc] init];
         _current = [self getObjectOfStateClass:initialStateClass];
         
         if (_current.superstatevar != nil)
