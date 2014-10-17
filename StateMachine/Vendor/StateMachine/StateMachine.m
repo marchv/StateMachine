@@ -19,6 +19,7 @@
 
 // public to State class
 @property (nonatomic, weak) State *source;
+@property (nonatomic)       BOOL eventRejected;
 @property (nonatomic, weak) id extendedState;
 @property (nonatomic)       BOOL traces;
 
@@ -110,14 +111,19 @@
     {
         if ([_source respondsToSelector:event])
         {
+            _eventRejected = NO;
             TRACE_MACHINE(@"%@ with object %@ catched by %@", NSStringFromSelector(event), object, NSStringFromClass([_source class]));
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [_source performSelector:event withObject:object];
 #pragma clang diagnostic pop
-            _source = nil;
+            if (_eventRejected) {
+                TRACE_MACHINE(@"%@ with object %@ rejected by %@", NSStringFromSelector(event), object, NSStringFromClass([_source class]));
+            } else {
+                _source = nil;
+            }
         }
-        else
+        if (_source)
         {
             //TRACE_MACHINE(@"%@ ignored by %@", NSStringFromSelector(event), NSStringFromClass([_source class]));
             _source = _source.superstatevar;
@@ -224,6 +230,10 @@
 - (void)transitionToState:(Class)newState withTransitionAction:(void(^)())action
 {
     [_machine transitionToState:newState withTransitionAction:action];
+}
+
+- (void)rejectEvent {
+    _machine.eventRejected = YES;
 }
 
 - (Class)superstate { return Nil; }

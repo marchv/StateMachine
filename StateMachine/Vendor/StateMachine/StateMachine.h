@@ -28,6 +28,10 @@
 - (void)transitionToState:(Class)newState;
 - (void)transitionToState:(Class)newState withTransitionAction:(void(^)())action;
 
+// used to reject a catched event if all guards failed on the event. by rejecting an event it becomes dispatched to the superstate
+- (void)rejectEvent;
+
+// TODO: should some of below be a protocol instead!?
 // to be optionally implemented by state
 - (Class)superstate;        // if state has a superstate return it here
 
